@@ -206,3 +206,18 @@ Failed to execute 'btoa' on 'Window': The string to be encoded contains characte
    
     sessionStorage: 存储的内容会随着浏览窗口关闭而消失
     LocalStorage: 存储的内容，需要手动清除才会消失
+
+
+## overflow
+CSS属性 overflow 定义当一个元素的内容太大而无法适应 块级格式化上下文 时候该做什么
+#### 1. 属性
+**overflow: visible** 默认值。内容不会被修剪，会呈现在元素框之外
+**overflow: hidden** 内容会被修剪，并且其余内容不可见
+**overflow: scroll** 内容会被修剪，浏览器会显示滚动条以便查看其余内容
+**overflow: auto** 由浏览器定夺，如果内容被修剪，就会显示滚动条
+**overflow: inherit** 规定从父元素继承overflow属性的值
+
+#### 2. 扩展
+**overflow-x overflow-y** 就是针对于元素的 x 轴和 y 轴 可以单独进行设置
+
+[MDN overflow ](https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow)

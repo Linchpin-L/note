@@ -221,3 +221,54 @@ CSS属性 overflow 定义当一个元素的内容太大而无法适应 块级格
 **overflow-x overflow-y** 就是针对于元素的 x 轴和 y 轴 可以单独进行设置
 
 [MDN overflow ](https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow)
+
+## 使用 canvas 合成两张图片
+代码
+
+```c
+drawAndShareImage(bgsrc, src) {
+    // 创建一张画布
+    let canvas = document.createElement('canvas');
+    // 设置画布的宽和高
+    canvas.width = 400;
+    canvas.height = 400;
+    // 设置画布的绘制环境 2d 绘制
+    let context = canvas.getContext('2d');
+    // 绘制一个矩形
+    context.rect(0, 0, canvas.width, canvas.height);
+    // 声明一个 image 对象
+    let bgImg = new Image();
+    // 设置这个 image 的 src 属性
+    bgImg.src = bgsrc;    // 背景图的url
+    // Anonymous 如果使用这个值的话就会在请求中的 header 中带上 Orgin 属性
+    // 但请求不会带上 cookie 和其他的一些认证信息
+    bgImg.crossOrigin = 'Anonymous';
+    bgImg.onload = () => {
+        // 向画布上绘制图片
+        context.drawImage(bgImg, 0, 0, 200, 200);
+        let img = new Image();
+        img.src = src;    // 需要合进去的图片url
+        img.crossOrigin = 'Anonymous';
+        img.onload = () => {
+            context.drawImage(img, 75, 75, 50, 50);
+            let base64 = canvas.toDataURL('image/png');
+            console.log(base64); // 这个就是合成后的图片链接
+        }
+    }
+}
+```
+## vue 使用 qrcode 把链接生成二维码图片
+1. 安装qrcode
+```c
+npm install --save qrcode
+```
+2. 引入
+```c
+import qrcode from 'qrcode'
+```
+3. 使用
+
+```c
+let url = await qrcode.toDataURL('需要转化的 url');  // 返回 promise
+```
+

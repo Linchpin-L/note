@@ -271,4 +271,38 @@ import qrcode from 'qrcode'
 ```c
 let url = await qrcode.toDataURL('需要转化的 url');  // 返回 promise
 ```
+## HTML 中的 link 标签解析
+link 标签  是用来链接到外部样式文件的一个标签
+|属性| 值 | 描述 |
+|--|--|--|
+| href | URL | 定义链接文档的位置`
+| hreflang| 	language_code | 定义被链接文档中文本的语言
+| media| media_query| 规定被链接文档将显示在什么设备上。
+| rel| [介绍](https://www.runoob.com/tags/att-link-rel.html) | 必需。定义当前文档与被链接文档之间的关系。rel 是 relationship的英文缩写。
+| sizes| HeightxWidth any | 定义了链接属性大小，只对属性 rel="icon" 起作用。
+| type| MIME_type | 规定被链接文档的 MIME 类型。
+
+### 记录一次 ssr 项目中为啥引入 css 样式在 ios 中不生效
+原代码
+```c
+link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: '', href: '/lib/css/bootstrap.min.css'},
+      { rel: 'stylesheet', type: '', href: '/lib/css/viewer.min.css'},
+    ],
+```
+这样引入 css 文件 css 文件不生效
+
+原因：
+因为没有设置 type='text/css'，现在的一些主流浏览器默认会把这些引入的 css 文件加上 type/css， 这就导致 可能在谷歌浏览器上面不加入这个属性， 也能造成 css 文件能够加载成功， 但是这种方式在 ios 苹果手机上面可能失效， 这时要想解决这种情况我们就需要手动加上这个属性
+
+更改完成之后：
+
+```c
+link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: '/lib/css/bootstrap.min.css'},
+      { rel: 'stylesheet', type: 'text/css', href: '/lib/css/viewer.min.css'},
+    ],
+```
 

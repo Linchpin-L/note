@@ -206,6 +206,68 @@ Failed to execute 'btoa' on 'Window': The string to be encoded contains characte
    
     sessionStorage: 存储的内容会随着浏览窗口关闭而消失
     LocalStorage: 存储的内容，需要手动清除才会消失
+4. ref属性
+
+   	ref 被用来给元素或者子组件注册引用信息（id的替代者）
+   	应用在html标签上获取的是真实的DOM元素，应用在组件标签上获取的是组件实例对象vc
+   	使用方法：
+   	       <h1 ref="xxx"></h1> 或者 <school ref="xxx"></school>
+   	       获取：this.$refs.xxx
+5. props 配置项
+
+       让组件接收外部传过来的数据
+        接收数据方式：
+           （1）只接收：props:['name','age']
+           （2）限制类型：props:{name:String, age:Number}
+           （3）限制类型、限制必要性、指定默认值
+   		        props: {
+   		   		  name: {
+   		      		  type: String,	 // 类型
+   		      		  required: true,// 必要性
+   		      		  default: 'cess'// 默认值
+   		          }
+   		        }
+   	  props是只读的，Vue底层会监测你对props的修改，如果进行了修改，就会发出警告；若确实需要修改，可以赋值props中的内容到data中，然后去修改data中的数据
+
+6. 编程式路由导航
+
+   	 this.$router.push({}) 内传的对象与<router-link>中的to相同,向history栈添加一个记录，点击后退会返回到上一个页面；
+   	 this.$router.replace({}) 跳转到不同的url,但是这个方法不会向history里添加新纪录，点击返回，会跳转到上上一个页面，上一个记录是不存在的；
+   	 this.$router.forward() 前进
+   	 this.$router.back() 后退
+   	 this.$router.go(n) n为正数前进，为负数后退
+
+7. 缓存路由组件
+
+        让不展示的路由组件保持挂载，不被销毁，当我们重新切回来时，还保持着之前的数据，比如，在文本框中输入数据，然后切换到其他页面，再切换到之前的文本框界面，则文本框的数据仍然保存着。
+        <keep-alive include="News"> <router-view></router-view></keep-alive> // 缓存一个路由组件
+        <keep-alive :include="['News','Message']"> <router-view></router-view></keep-alive> // 缓存多个路由组件
+        <keep-alive></keep-alive> // 全部缓存
+
+
+8.  正则表达式的使用：
+
+	    常用的方法：
+	     let str = '123abc456ef' // 需要处理的字符串
+	     let regEx = /[a-z]+/
+	    （1）查询matches: 用规则匹配整个字符串，只要有一处不符合规则，就匹配结束，返回false ;
+	    （2）切割split: 将字符串分割成字符串数组	    
+	    （3）替换replaceAll：直接使用，全局匹配，不需要加g修饰符
+	           replace: 使用时需要加上g修饰符，否则只会替换第一个
+	            例：let res =  str.replace(/regEx/g,"0")
+	            console.log(res) //打印结果：12304560
+	    （4）search: 检索与正则表达式相匹配的值，返回的是索引或者-1；仅返回一个匹配值的索引，不能全局匹配
+	               例：let res = str.search(regEx)
+	               console.log(res) //打印结果：  
+	    （5）match: 通过字符串查找只能返回第一次匹配到的元素；如果使用了g修饰符，则返回的是字符串中出现的指定字符的所有值的集合，不会有index,input等属性;如果匹配不到，返回null
+	               例：let res = str.match(regEx)
+	               console.log（res）//打印结果：["abc",index: 3,input: "123abc456ef",groups: undefind]
+	               如果使用了g修饰符，则返回如下数组：
+	                 ["abc","ef"]
+	    （6）test: 用于检测一个字符串是否匹配指定内容，匹配返回true，不匹配返回false
+	              例：let res = regEx.test(str)
+	               console.log(res) // 打印结果：true
+	    （7）exec: 用于检索正则表达式中的匹配，若匹配到返回数组，否则返回null
 
 
 ## overflow
@@ -305,4 +367,22 @@ link: [
       { rel: 'stylesheet', type: 'text/css', href: '/lib/css/viewer.min.css'},
     ],
 ```
+
+
+###接口传值形式：formData,JSON,   From URL Encode格式的区别
+
+	    （1） formData对应的contentType 的值为：multipart/form-data，不需要单独设置contentType的值，将数据格式改为formData格式即可。
+	              formData格式提交的数据为：a=1&b=2&c=3
+	           即可以上传文件，也可以上传键值对，它是以键值对的形式上传，因此可以上传多个文件;文件流格式
+	    （2）JSON对应的contentType的值为：  application/json，需要手动设置content-type的值；
+	           JSON格式提交的数据为：{"a":1,"b":2,"c":3}
+	    （3）From URL Encode格式formData,对应的content-type: application/x-www-form-urlencoded,需要手动配置，并且使用
+	             qs.stringfy(data)将data转换成url格式，才能正常使用；
+	             form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）
+    
+
+	
+   
+
+
 

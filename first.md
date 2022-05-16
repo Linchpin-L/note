@@ -57,4 +57,124 @@ trim()移除字符串两侧的空白字符
   在实例销毁之前调用，实例仍然完全可用，这一步还可以用this来获取实例，一般在这一步做一些重置的操作，比如清除掉组件中的定时器 和 监听的dom事件
   destroyed（销毁后）
   在实例销毁之后调用，调用后，所以的事件监听器会被移出，所有的子实例也会被销毁，该钩子在服务器端渲染期间不被调用
-4 
+4 html字符实体
+链接：https://www.w3school.com.cn/html/html_entities.asp
+  html中的预留字符必须被替换为字符实体
+  在html当中不能使用小于号（<）和大于号（>），因为浏览器会误认为他们是标签
+  如果希望正确地显示预留字符，我们必须在html源代码中使用字符实体
+  html中有用的字符实体
+  **html**实体名称对大小写敏感
+  显示结果	描述	实体名称	实体编号
+   	空格 	&nbsp; &#160;
+  <	小于号	&lt;	&#60;
+  >	大于号	&gt;	&#62;
+  &	和号  	&amp;	&#38;
+  "	引号	    &quot;	&#34;
+  '	撇号 	&apos; (IE不支持)	&#39;
+  ￠分（cent）	&cent;	&#162;
+  £	镑（pound）	&pound;	&#163;
+  ¥	元（yen）	&yen;	&#165;
+  €	欧元（euro）	&euro;	&#8364;
+  §	小节	&sect;	&#167;
+  ©	版权（copyright）	&copy;	&#169;
+  ®	注册商标	&reg;	&#174;
+  ™	商标	&trade;	&#8482;
+  ×	乘号	&times;	&#215;
+  ÷	除号	&divide;	&#247;
+const matchList  = {
+  '&lt;': '<',
+  '&gt;': '>',
+  '&amp;': '&',
+  '&#34;': '"',
+  '&quot;': '"',
+  '&#39;': "'",
+  '&nbsp;': " ",
+}
+// 字符过滤器
+let regStr = '(' + Object.keys(matchList).toString() + ')'
+// ↑ ------------【*提取匹配列表key值*】.【组数转字符串】
+regStr = regStr.replace(/,/g, ')|(')
+// ↑ 通过匹配将其更新为正则的字符串类型
+const regExp = new RegExp(regStr, 'g')
+return text.replace(regExp, match => matchList[match])
+// ↑ ------ 替换方法 (正则, 当前key => 返回当前被匹配的key值)
+
+5 input复选框选中<label></label>中的内容也可以选中
+<div v-for="(item, i) in selected" :key="i">
+ <input type=checkbox v-model="item.active" :id="`form${item.id}`">
+ <label :for="`form${item.id}`">{{item.title}}</label>
+</div>
+需要for一下 但要是数组性的渲染 需要转为动态的
+**data中声明一下**
+
+ selected: [{
+                 title: '删除选项的前两个字符',
+                 active: false,
+                 id: 1,
+               },
+               {
+                 title: '恢复转义字符（如 $nbsp; 到 空格）',
+                 active: false,
+                 id: 2
+               },
+               {
+                 title: '移除题干和选项的html标签',
+                 active: false,
+                 id: 3
+               }
+    ],
+  
+6 摘抄的方法
+// 删除 html 标签
+let deleteHtmlTag = (content) => {
+    try {
+        return content.replace(/<.*?>/ig, '')
+    } catch (e) {
+        return content
+    }
+}
+
+// 删除选项上多余的东西
+let deleteOptionRed = (content) => {
+    const arr = ['A.', 'B.', 'C.', 'D.', 'E.', 'F.', 'G.', 'H.', 'I.', 'J.', 'K.', 'L.', 'M.', 'N.']
+    for (let i in arr) {
+        if (content.indexOf(arr[i]) !== -1) {
+            return content.replace(arr[i], '')
+        }
+    }
+}
+
+// 过滤选项上多余的转义字符
+let htmlFilter = (text) => {
+    // 抽离成可配置的匹配列表
+    const matchList  = {
+        '&lt;': '<',
+        '&gt;': '>',
+        '&amp;': '&',
+        '&#34;': '"',
+        '&quot;': '"',
+        '&#39;': "'",
+        '&nbsp;': "",
+    }
+    // 字符过滤器
+    let regStr = '(' + Object.keys(matchList).toString() + ')'
+    // ↑ ------------【*提取匹配列表key值*】.【组数转字符串】
+    regStr = regStr.replace(/,/g, ')|(')
+    // ↑ 通过匹配将其更新为正则的字符串类型
+    const regExp = new RegExp(regStr, 'g')
+    // ↑ ------- 字符串 转 正则 方法
+    return text.replace(regExp, match => matchList[match])
+    // ↑ ------ 替换方法 (正则, 当前key => 返回当前被匹配的key值)
+}
+7 html表单
+html表单用于搜索不同类型的用户输入
+html表单元素是指不同类型的input元素、复选框、单选按钮、提交按钮等等
+类型：
+text 定义常规文本输入
+radio 定义单选按钮输入（选择多个选择之一）
+submit 定义提交按钮（提交表单）
+8 git rebase命令
+git rebase 命令在另一个分支的基础上重新应用，用于把一个分支的修改合并到当前分支
+https://www.yiibai.com/git/git_rebase.html
+
+ 

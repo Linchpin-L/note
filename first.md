@@ -1,4 +1,4 @@
-1 cookie的工作流程：
+**1 cookie的工作流程：**
   客户端访问服务器，服务器调用response.addCookie()方法，产生响应时，会产生set-cookie响应头，将cookie文本发送给客户端，客户端会将cookie文本保存起来，当客户端再次请求服务器时，会产生cookie请求头，将之前服务器发送的cookie信息，再发送给服务器，服务器就可以根据cookie信息跟踪客户端的状态。
 eg:从cookie中获取userId
 export const $getUserId = () => {
@@ -14,7 +14,7 @@ export const $getUserId = () => {
   return null
 }
 trim()移除字符串两侧的空白字符
-2 三种提取字符串的方法
+**2 三种提取字符串的方法**
 (1) slice(start, end)
   slice() 提取字符串的某个部分并在新字符串中返回被提取的部分。
 该方法设置两个参数：起始索引（开始位置），终止索引（结束位置）。
@@ -40,7 +40,7 @@ trim()移除字符串两侧的空白字符
  var res = str.substr(7,6);
  结果是：
  Banana
-3 vue生命周期 
+**3 vue生命周期** 
   beforeCreate( 创建前 )
   在实例初始化之后，数据观测和事件配置之前被调用，此时组件的选项对象还未创建，el 和 data 并未初始化，因此无法访问methods， data， computed等上的方法和数据。
   created ( 创建后 ）
@@ -57,7 +57,7 @@ trim()移除字符串两侧的空白字符
   在实例销毁之前调用，实例仍然完全可用，这一步还可以用this来获取实例，一般在这一步做一些重置的操作，比如清除掉组件中的定时器 和 监听的dom事件
   destroyed（销毁后）
   在实例销毁之后调用，调用后，所以的事件监听器会被移出，所有的子实例也会被销毁，该钩子在服务器端渲染期间不被调用
-4 html字符实体
+**4 html字符实体**
 链接：https://www.w3school.com.cn/html/html_entities.asp
   html中的预留字符必须被替换为字符实体
   在html当中不能使用小于号（<）和大于号（>），因为浏览器会误认为他们是标签
@@ -99,7 +99,7 @@ const regExp = new RegExp(regStr, 'g')
 return text.replace(regExp, match => matchList[match])
 // ↑ ------ 替换方法 (正则, 当前key => 返回当前被匹配的key值)
 
-5 input复选框选中<label></label>中的内容也可以选中
+**5 input复选框选中<label></label>中的内容也可以选中**
 <div v-for="(item, i) in selected" :key="i">
  <input type=checkbox v-model="item.active" :id="`form${item.id}`">
  <label :for="`form${item.id}`">{{item.title}}</label>
@@ -124,7 +124,7 @@ return text.replace(regExp, match => matchList[match])
                }
     ],
   
-6 摘抄的方法
+**6 摘抄的方法**
 // 删除 html 标签
 let deleteHtmlTag = (content) => {
     try {
@@ -166,15 +166,44 @@ let htmlFilter = (text) => {
     return text.replace(regExp, match => matchList[match])
     // ↑ ------ 替换方法 (正则, 当前key => 返回当前被匹配的key值)
 }
-7 html表单
+**7 html表单**
 html表单用于搜索不同类型的用户输入
 html表单元素是指不同类型的input元素、复选框、单选按钮、提交按钮等等
 类型：
 text 定义常规文本输入
 radio 定义单选按钮输入（选择多个选择之一）
 submit 定义提交按钮（提交表单）
-8 git rebase命令
+**8 git rebase命令**
 git rebase 命令在另一个分支的基础上重新应用，用于把一个分支的修改合并到当前分支
 https://www.yiibai.com/git/git_rebase.html
-
+**9 Number.isSafeInteger 方法使用**
+Number.isSafeInteger 方法确定所提供的值是否为安全整数。
+安全整数是指：
+可以精确地表示为 IEEE-754 双精度数，并且
+其 IEEE-754 表示不能是对任何其他整数进行四舍五入以适合 IEEE-754 表示的结果。
+ 508/2000 
+ 例如，2 ^ 53-1是一个安全的整数: 它可以被精确表示，并且在任何 ieee-754四舍五入模式下都不会有其他整数舍入。
+ 相比之下，2 ^ 53不是一个安全的整数: 它可以在 ieee-754中精确表示，但是整数2 ^ 53 + 1不能直接在 ieee-754中表示，
+ 而是在四舍五入和四舍五入下四舍五入到2 ^ 53。
+ 安全整数由-(2 ^ 53-1)至2 ^ 53-1(± 9007199254740991)或 ± 9,007,199,254,740,991)的所有整数组成。
+ Number.isSafeInteger(3);                    // true
+ Number.isSafeInteger(Math.pow(2, 53));      // false
+ Number.isSafeInteger(Math.pow(2, 53) - 1);  // true
+ Number.isSafeInteger(NaN);                  // false
+ Number.isSafeInteger(Infinity);             // false
+ Number.isSafeInteger('3');                  // false
+ Number.isSafeInteger(3.1);                  // false
+ Number.isSafeInteger(3.0);                  // true
+ _javaScript_
+ 对于整数，根据ECMAScript标准的要求(地址)，JavaScript能表示并进行精确算术运算的整数范围为：
+ 正负2的53次方，也即从最小值-9007199254740992到最大值+9007199254740992之间的范围；
+ 对于超过这个范围的整数，JavaScript依旧可以进行运算，但却不保证运算结果的精度。
+ 值得注意的是，对于整数的位运算（比如移位等操作），JavaScript仅支持32位整型数，也即从-2147483648到+2147483647之间的整数。
+ 当整数值超出-9007199254740992到9007199254740992的范围时，不用运算也会发生偏差;
+ _Math.pow(底数x,指数y)_
+ math.pow(2,53) = 2的53次方
+ 1.如果底数 x 为负数并且指数 y 不是整数，将会返回NaN。
+ 2.如果底数 x 是 0，指数 y 是负数，将会返回Infinity (无穷)。
+ 3.如果返回值太大，将会返回Infinity (无穷)。
+10 
  

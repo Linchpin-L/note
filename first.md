@@ -205,5 +205,41 @@ Number.isSafeInteger 方法确定所提供的值是否为安全整数。
  1.如果底数 x 为负数并且指数 y 不是整数，将会返回NaN。
  2.如果底数 x 是 0，指数 y 是负数，将会返回Infinity (无穷)。
  3.如果返回值太大，将会返回Infinity (无穷)。
-10 
+**10 数组的增删改查**
+js 数组的添加和删除
+js中数组元素常用添加方法是直接添加、push方法以及unshift方法
+删除方法则是delete、pop、shift及修改方法为一身的则是splice
+_1、添加：_
+　　　(1)直接添加通常都是这样
+　　　　var arr=[];arr[0]="first";arr[1]="second";
+　　　(2)push
+　　　　push方法就是将要添加的元素添加到数组的**末尾**，数组长度+1
+　　　　var arr=["first","second"];　　//arr.length=2
+　　　　arr.push("last");//　　arr→["first","second","last"]　　　　arr.length=3
+　　　(3)unshift
+　　　　unshift方法就是将要添加的元素添加到**数组头部**，并将其他元素一次移到更高的索引处
+　　　　var arr=["first","second"];　　//arr.length=2
+　　　　arr.unshift("last");//　　arr→["last","first","second"]　　　　arr.length=3
+_2、删除_
+　　(1)delete
+　　var arr=["first","second","last"];
+　　delete arr[0];//arr→[undefined,"second","last"],arr.length=3;
+　　**并未完全达到删除目的**
+　　(2)pop
+　　pop方法是与push对应的，**删除最后一个元素**，数组长度-1
+　　var arr=["first","second","last"];
+　　arr.pop();//arr→["first","second"],arr.length=2;
+　　(3)shift
+　　与unshift对应，删除第一个元素，数组长度-1，其他元素索引均-1
+_3、splice_
+　　splice方法是修改方法，具有添加和删除功能
+　　splice()的前两参数指定了需要删除的数组元素，紧随其后任意多个参数指定需要插入到数组的元素，
+    以至于splice可以实现添加、删除和修改功能。实际上不是修改，只是先删除一个元素再把后面插入的元素插入到那个位置。
+　　_添加：_
+　　var arr=[1,2,3,4,5];
+　　arr.splice(2,0,"change");//arr→[1,2,"change",3,4,5]
+　　参数2代表索引值，参数0代表要改变的元素个数，最后一个参数代表要添加或者替换进去的元素。
+　　_删除_
+　　arr.splice(2,1);//arr→[1,2,4,5]　　当然，也可以删除多个，修改第二个参数即可
+
  

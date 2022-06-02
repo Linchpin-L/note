@@ -23,15 +23,26 @@ Failed to execute 'btoa' on 'Window': The string to be encoded contains characte
 ## 一、http状态码
     (一)1XX:接到请求，继续处理;
     (二)2XX: 请求成功;
+		200: 服务器成功返回请求的数据
+		201: 新建或修改数据成功
+		202: 一个请求已经进入后台排队（异步任务）
     (三)3XX: 请求重定向;
         301 请求被永久重定向到另一个地址
         302 请求被临时重定向到另一个地址
         304 Not Modified 资源未修改，从本地取缓存
         307 重定向中保持原来的post数据，防止数据库丢失
     (四)4XX: 客户端请求错误;
+        401 用户没有权限（用户名或密码错误）;
+        403 用户得到授权但访问被禁止
         404 没有找到请求的文件;
-        403 客户端访问错误;
+        406 请求的格式不可得
+        410 请求资源被删除		
+        422 创建对象时发生一个验证错误
     (五)5XX: 服务端出现问题;
+        500 服务器发生错误，请检查服务器		
+        502 网关错误
+        503 服务不可用，服务暂时过载或维护		
+        504 网关超时
 
 ## 二、位运算符
 
@@ -270,7 +281,7 @@ Failed to execute 'btoa' on 'Window': The string to be encoded contains characte
 	    （7）exec: 用于检索正则表达式中的匹配，若匹配到返回数组，否则返回null
 
 
-## overflow
+## 五、overflow
 CSS属性 overflow 定义当一个元素的内容太大而无法适应 块级格式化上下文 时候该做什么
 #### 1. 属性
 **overflow: visible** 默认值。内容不会被修剪，会呈现在元素框之外
@@ -284,7 +295,8 @@ CSS属性 overflow 定义当一个元素的内容太大而无法适应 块级格
 
 [MDN overflow ](https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow)
 
-## 使用 canvas 合成两张图片
+## 其他常用的操作
+### 1. 使用 canvas 合成两张图片
 代码
 
 ```c
@@ -319,7 +331,7 @@ drawAndShareImage(bgsrc, src) {
     }
 }
 ```
-## vue 使用 qrcode 把链接生成二维码图片
+### 2. vue 使用 qrcode 把链接生成二维码图片
 1. 安装qrcode
 ```c
 npm install --save qrcode
@@ -333,7 +345,7 @@ import qrcode from 'qrcode'
 ```c
 let url = await qrcode.toDataURL('需要转化的 url');  // 返回 promise
 ```
-## HTML 中的 link 标签解析
+### 3. HTML 中的 link 标签解析
 link 标签  是用来链接到外部样式文件的一个标签
 |属性| 值 | 描述 |
 |--|--|--|
@@ -344,7 +356,7 @@ link 标签  是用来链接到外部样式文件的一个标签
 | sizes| HeightxWidth any | 定义了链接属性大小，只对属性 rel="icon" 起作用。
 | type| MIME_type | 规定被链接文档的 MIME 类型。
 
-### 记录一次 ssr 项目中为啥引入 css 样式在 ios 中不生效
+#### （1）记录一次 ssr 项目中为啥引入 css 样式在 ios 中不生效
 原代码
 ```c
 link: [
@@ -355,8 +367,8 @@ link: [
 ```
 这样引入 css 文件 css 文件不生效
 
-原因：
-因为没有设置 type='text/css'，现在的一些主流浏览器默认会把这些引入的 css 文件加上 type/css， 这就导致 可能在谷歌浏览器上面不加入这个属性， 也能造成 css 文件能够加载成功， 但是这种方式在 ios 苹果手机上面可能失效， 这时要想解决这种情况我们就需要手动加上这个属性
+	原因：
+	因为没有设置 type='text/css'，现在的一些主流浏览器默认会把这些引入的 css 文件加上 type/css， 这就导致 可能在谷歌浏览器上面不加入这个属性， 也能造成 css 文件能够加载成功， 但是这种方式在 ios 苹果手机上面可能失效， 这时要想解决这种情况我们就需要手动加上这个属性
 
 更改完成之后：
 
@@ -369,7 +381,7 @@ link: [
 ```
 
 
-###接口传值形式：formData,JSON,   From URL Encode格式的区别
+#### （2）接口传值形式：formData,JSON,   From URL Encode格式的区别
 
 	    （1） formData对应的contentType 的值为：multipart/form-data，不需要单独设置contentType的值，将数据格式改为formData格式即可。
 	              formData格式提交的数据为：a=1&b=2&c=3
@@ -385,4 +397,33 @@ link: [
    
 
 
-
+### 4. validate表单验证
+#### （1）validate表单验证的作用
+	作用就是对输入的数据，立即进行校验，查看是否复合要求
+	eg: 用required判断某个输入框是否属于必填字段、判断输入框中的最大输入长度等。
+#### （2）使用validate验证：
+	a. 使用 validate 需要先引入 jquery.validate.js
+	b. 页面加载后对表单进行验证 $("#表单id名").validate({}）
+	c. 在validate中的rules中编写验证规则
+	 	1. 一个输入框只有一个校验器的时候，可以用字段的name属性:“校验器”；
+		2. 输入框需要有多个校验器的时候，可以用字段的name属性:{校验器:值,校验器:值}
+	d. 在validate中的messages中编写提示信息
+	e. 在validate中的submitHandler中编写验证通过执行的内容
+#### （3）验证规则：
+| 校验类型 | 取值 | 描述 |
+|--|--|--|
+|required|true/false|必填字段|
+|email|“@”或者”email”|邮件地址|
+|url||路径|
+|date|数字|日期|
+|dateISO|字符串|日期（YYYY-MM-dd）|
+|number||数字（负数，小数）|
+|digits||整数|
+|minlength|数字|最小长度|
+|maxlength|数字|最大长度|
+|rangelength|[minL,maxL]|长度范围|
+|min||最小值|
+|max||最大值|
+|range|[min,max]|值范围|
+|equalTo|jQuery表达式|两个值相同|
+|remote|url路径|ajax校验|

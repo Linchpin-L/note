@@ -295,7 +295,7 @@ CSS属性 overflow 定义当一个元素的内容太大而无法适应 块级格
 
 [MDN overflow ](https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow)
 
-## 其他常用的操作
+## 六、其他常用的操作
 ### 1. 使用 canvas 合成两张图片
 代码
 
@@ -331,6 +331,7 @@ drawAndShareImage(bgsrc, src) {
     }
 }
 ```
+
 ### 2. vue 使用 qrcode 把链接生成二维码图片
 1. 安装qrcode
 ```c
@@ -345,6 +346,7 @@ import qrcode from 'qrcode'
 ```c
 let url = await qrcode.toDataURL('需要转化的 url');  // 返回 promise
 ```
+
 ### 3. HTML 中的 link 标签解析
 link 标签  是用来链接到外部样式文件的一个标签
 |属性| 值 | 描述 |
@@ -355,7 +357,6 @@ link 标签  是用来链接到外部样式文件的一个标签
 | rel| [介绍](https://www.runoob.com/tags/att-link-rel.html) | 必需。定义当前文档与被链接文档之间的关系。rel 是 relationship的英文缩写。
 | sizes| HeightxWidth any | 定义了链接属性大小，只对属性 rel="icon" 起作用。
 | type| MIME_type | 规定被链接文档的 MIME 类型。
-
 #### （1）记录一次 ssr 项目中为啥引入 css 样式在 ios 中不生效
 原代码
 ```c
@@ -379,8 +380,6 @@ link: [
       { rel: 'stylesheet', type: 'text/css', href: '/lib/css/viewer.min.css'},
     ],
 ```
-
-
 #### （2）接口传值形式：formData,JSON,   From URL Encode格式的区别
 
 	    （1） formData对应的contentType 的值为：multipart/form-data，不需要单独设置contentType的值，将数据格式改为formData格式即可。
@@ -391,11 +390,6 @@ link: [
 	    （3）From URL Encode格式formData,对应的content-type: application/x-www-form-urlencoded,需要手动配置，并且使用
 	             qs.stringfy(data)将data转换成url格式，才能正常使用；
 	             form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）
-    
-
-	
-   
-
 
 ### 4. validate表单验证
 #### （1）validate表单验证的作用
@@ -427,3 +421,102 @@ link: [
 |range|[min,max]|值范围|
 |equalTo|jQuery表达式|两个值相同|
 |remote|url路径|ajax校验|
+#### （4）操作符说明
+| 标记 | 标记说明|
+|--|--|
+| , | 多操作符分割 |
+| I | 或操作 |
+| -	| 跳过字段验证 |
+#### （5）常用标记说明
+| 标记 | 标记说明 | 例 |
+|--|--|--|
+| required | 必填 |	Field或Struct validate:"required" |
+| omitempty |	空时忽略 | 	Field或Struct validate:"omitempty" |
+| len |	长度 | Field validate:"len=0" |
+| eq | 等于 | Field validate:"eq=0" |
+| gt | 大于 | Field validate:"gt=0" |
+| gte | 大于等于 | Field validate:"gte=0" |
+| lt | 小于 | Field validate:"lt=0" |
+| lte | 小于等于 | Field validate:"lte=0" |
+| eqfield | 同一结构体字段相等 | Field validate:"eqfield=Field2" |
+| nefield | 同一结构体字段不相等 | Field validate:"nefield=Field2" |
+| gtfield | 大于同一结构体字段 | Field validate:"gtfield=Field2" |
+| gtefield | 大于等于同一结构体字段 | Field validate:"gtefield=Field2" |
+| ltfield | 小于同一结构体字段 | Field validate:"ltfield=Field2" |
+| ltefield | 小于等于同一结构体字段 | Field validate:"ltefield=Field2" |
+| eqcsfield | 跨不同结构体字段相等 | Struct1.Field validate:"eqcsfield=Struct2.Field2" |
+| necsfield | 跨不同结构体字段不相等 | Struct1.Field validate:"necsfield=Struct2.Field2" |
+| gtcsfield | 大于跨不同结构体字段 | Struct1.Field validate:"gtcsfield=Struct2.Field2" |
+| gtecsfield | 大于等于跨不同结构体字段 | Struct1.Field validate:"gtecsfield=Struct2.Field2" |
+| ltcsfield | 小于跨不同结构体字段 | Struct1.Field validate:"ltcsfield=Struct2.Field2" |
+| ltecsfield | 小于等于跨不同结构体字段 | Struct1.Field validate:"ltecsfield=Struct2.Field2" |
+| min | 最小值 | Field validate:"min=1" |
+| max | 最大值 | Field validate:"max=2" |
+| structonly | 仅验证结构体，不验证任何结构体字段 | Struct validate:"structonly" |
+| nostructlevel | 不运行任何结构级别的验证 | Struct validate:"nostructlevel" |
+| dive | 向下延伸验证，多层向下需要多个dive标记 | [][]string validate:"gt=0,dive,len=1,dive,required" | 
+| dive Keys & EndKeys | 与dive同时使用，用于对map对象的键的和值的验证，keys为键，endkeys为值 | map[string]string validate:"gt=0,dive,keys,eq=1|eq=2,endkeys,required" |
+| required_with | 其他字段其中一个不为空且当前字段不为空 | Field validate:"required_with=Field1 Field2" |
+| required_with_all | 其他所有字段不为空且当前字段不为空 | Field validate:"required_with_all=Field1 Field2" |
+| required_without | 其他字段其中一个为空且当前字段不为空 | Field `validate:"required_without=Field1 Field2" |
+| required_without_all | 其他所有字段为空且当前字段不为空 | Field validate:"required_without_all=Field1 | Field2" |
+| isdefault | 是默认值 | Field validate:"isdefault=0"oneof其中之一Field validate:"oneof=5 7 9"
+| containsfield | 字段包含另一个字段 | Field validate:"containsfield=Field2" |
+| excludesfield | 字段不包含另一个字段 | Field validate:"excludesfield=Field2" |
+| unique | 是否唯一，通常用于切片或结构体 | Field validate:"unique" |
+| alphanum | 字符串值是否只包含 ASCII 字母数字字符 | Field validate:"alphanum" |
+| alphaunicode | 字符串值是否只包含 unicode 字符 | Field validate:"alphaunicode" |
+| alphanumunicode | 字符串值是否只包含 unicode 字母数字字符 | Field validate:"alphanumunicode" |
+| numeric | 字符串值是否包含基本的数值 | Field validate:"numeric" |
+| hexadecimal | 字符串值是否包含有效的十六进制 | Field validate:"hexadecimal" |
+| hexcolor | 字符串值是否包含有效的十六进制颜色 | Field validate:"hexcolor" |
+| lowercase | 符串值是否只包含小写字符 | Field validate:"lowercase" |
+| uppercase | 符串值是否只包含大写字符 | Field validate:"uppercase" |
+| email | 字符串值包含一个有效的电子邮件 | Field validate:"email" |
+| json | 字符串值是否为有效的 JSON | Field validate:"json" |
+| file | 符串值是否包含有效的文件路径，以及该文件是否存在于计算机上 | Field validate:"file" |
+| url | 符串值是否包含有效的 url | Field validate:"url" |
+| uri | 符串值是否包含有效的 uri | Field validate:"uri" |
+| base64 | 字符串值是否包含有效的 base64值 | Field validate:"base64" |
+| contains | 字符串值包含子字符串值 | Field validate:"contains=@" |
+| containsany | 字符串值包含子字符串值中的任何字符 | Field validate:"containsany=abc" |
+| containsrune | 字符串值包含提供的特殊符号值 | Field validate:"containsrune=☢" |
+| excludes | 字符串值不包含子字符串值 | Field validate:"excludes=@" |
+| excludesall | 字符串值不包含任何子字符串值 | Field validate:"excludesall=abc" |
+| excludesrune | 字符串值不包含提供的特殊符号值 | Field validate:"containsrune=☢" |
+| startswith | 字符串以提供的字符串值开始 | Field validate:"startswith=abc" |
+| endswith | 字符串以提供的字符串值结束 | Field validate:"endswith=abc" |
+| ip | 字符串值是否包含有效的 IP 地址 | Field validate:"ip" |
+| ipv4 | 字符串值是否包含有效的 ipv4地址 | Field validate:"ipv4" |
+| datetime | 字符串值是否包含有效的 日期 | Field validate:"datetime" |
+#### （6）validator默认校验规则
+	a. required:true 必输字段
+	b. remote:"check.php" 使用ajax方法调用check.php验证输入值
+	c. email:true 必须输入正确格式的电子邮件
+	d. url:true 必须输入正确格式的网址
+	e. date:true 必须输入正确格式的日期
+	f. dateISO:true 必须输入正确格式的日期(ISO)，例如：2009-06-23，1998/01/22 只验证格式，不验证有效性
+	g. number:true 必须输入合法的数字(负数，小数)
+	h. digits:true 必须输入整数
+	i. creditcard: 必须输入合法的信用卡号
+	j. equalTo:"#field" 输入值必须和#field相同
+	k. accept: 输入拥有合法后缀名的字符串（上传文件的后缀）
+	l. maxlength:5 输入长度最多是5的字符串(汉字算一个字符)
+	m. minlength:10 输入长度最小是10的字符串(汉字算一个字符)
+	n. rangelength:[5,10] 输入长度必须介于 5 和 10 之间的字符串")(汉字算一个字符)
+	o. range:[5,10] 输入值必须介于 5 和 10 之间
+	p. max:5 输入值不能大于5
+	q. min:10 输入值不能小于10
+
+### 5. 时间选择器和时间戳
+
+#### （1）时间选择器：
+	<input type="date"/>
+	可以选择当前日期
+#### （2）时间戳：
+	获取当前的时间戳：new Date().getTime()
+	获取昨天的时间戳：new Date().getTime() - 24*60*60*1000
+	获取昨天的十位的时间戳：parseInt((new Date().getTime() - 24*60*60*1000)/1000)
+
+### 6. 模板字符串
+	模板字符串使用反引号 (` `) 来代替普通字符串中的用双引号和单引号。模板字符串可以包含特定语法（${expression}）的占位符。占位符中的表达式和周围的文本会一起传递给一个默认函数，该函数负责将所有的部分连接起来，如果一个模板字符串由表达式开头，则该字符串被称为带标签的模板字符串，该表达式通常是一个函数，它会在模板字符串处理后被调用，在输出最终结果前，你都可以通过该函数来对模板字符串进行操作处理。在模版字符串内使用反引号（`）时，需要在它前面加转义符（\）。

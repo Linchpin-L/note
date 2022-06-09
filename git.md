@@ -1,6 +1,6 @@
 # 一. 项目中Git的一些操作
 
-##  1. 鼠标右键 Git 选项含义：
+## 1. 鼠标右键 Git 选项含义：
     Git GUI Here：通过图形化的方式操作 git
     Git Bash Here：通过命令行操作 git（常用）
 
@@ -40,3 +40,19 @@
     hint: See the 'Note about fast-forwards' in 'git push --help' for details.
     是因为，没有及时更新自己的项目
     所以，一定要在其他成员提交之后及时更新自己本地的项目
+
+## 3. 新建分支
+    （1）git pull origin master //在master分支下，保证当前代码与线上同步，是最新的
+    （2）git branch <分支名>    //新建分支
+    （3）git checkout <分支名>  //切换到新建的分支上，再进行下一步
+    （4）git push origin <分支名>   //把本地分支推到远端，让远端也有一个你的分支，用来后面提交你的代码。
+    （5）git checkout -b <分支名>   //新建分支并切换到该分支
+注意：在新建分支之前应该确保在master分支下，并且要保证当前的是最新代码，否则提交代码会出现问题。
+
+## 4. 提交代码
+    （1）git branch //确保自己当前在自己的分支上
+    （2）git status //查看自己写了哪些东西
+    （3）git add .  //保存
+    （4）git commit -m "注释"   //书写提交的注释
+    （5）git push origin <分支名>   //从本地向远端推代码
+    （6）git pull --rebase origin <远程分支名>  //如果出现报错信息：远程比本地多了某些代码，可以用这个命令将本地代码更新成最新的并且保存自己的修改，此时再用 git push origin <分支名> 提交自己的代码

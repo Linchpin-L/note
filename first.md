@@ -250,5 +250,44 @@ js 数组的添加和删除
 ```
 ###11小图标链接
 [小图标](https://fontawesome.dashgame.com/)
-###12
- 
+###12 table表格标准模板
+```c
+表格由 <table> 标签来定义。
+每个表格均有若干行（由 <tr> 标签定义），
+每行被分割为若干单元格（由 <td> 标签定义）。
+字母 td 指表格数据（table data），即数据单元格的内容。
+表格的表头使用 <th> 标签进行定义。
+数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">The table header</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>The table body</td>
+            <td>with two columns</td>
+        </tr>
+    </tbody>
+</table>
+```
+ ###13火车头测试后台账号与密码
+    火车头测试账号：admin
+    火车头测试密码：admin
+[火车头测试后台链接](http://www.test.mingyipin.cn/admin/index.php)
+[火车头正式后台链接](http://www.mingyipin.cn/admin/index.php)
+###14火车头遇见的错误
+    1.上传不成功：
+    第三步处：
+    网站根地址改为：https://www.mingyipin.cn
+    点击web发布配置管理 点击编辑
+    将登陆后地址后缀改为mingyipin
+    2.显示采集内容不成功的问题
+    **记得保存**
+    检查标签显示的范围
+    检查采集的标签的问题
+    3.未解决的问题
+    采集后的内容没有显示出来很完全
+[解决采集过快的问题](http://www.locoy.com/index/news_detail/id/382)
+    

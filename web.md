@@ -280,6 +280,21 @@ Failed to execute 'btoa' on 'Window': The string to be encoded contains characte
 	               console.log(res) // 打印结果：true
 	    （7）exec: 用于检索正则表达式中的匹配，若匹配到返回数组，否则返回null
 
+####9. 将一个元素滚动到可视范围内使用scrollIntoView方法
+     用法：element.scrollIntoView(); // 默认为true
+          element.scrollIntoView(alignToTop); // Boolean parameter(true/false)
+          element.scrollIntoView(scrollIntoViewOptions); // Object parameter / Boolean parameter
+          scrollIntoViewOptions:
+          {
+            定义动画过渡效果 behavior: "auto"  | "instant" | "smooth",  // 默认auto
+            定义垂直方向的对齐 block: "start" | "center" | "end" | "nearest",  // 默认center
+            定义水平方向的对齐  inline: "strart" | "center" | "end" | "nearest"  // 默认nearest
+          }
+          其中：true: 元素的顶部将对齐到可滚动祖先的可见区域的顶部。对应于scrollIntoViewOptions: {block: "start", inline: "nearest"}。这是默认值
+            false: 元素的底部将与可滚动祖先的可见区域的底部对齐。对应于scrollIntoViewOptions: {block: "end", inline: "nearest"}。
+            scrollIntoViewOptions: {block: "center", inline: "nearest"},居中对齐
+            behavior中auto 表示使用当前元素的 scroll-behavior 样式。instant 和 smooth 表示 直接滚到底 和 使用平滑滚动。
+            block中start 表示将视口的顶部和元素顶部对齐；center 表示将视口的中间和元素的中间对齐；end 表示将视口的底部和元素底部对齐；nearest 表示就近对齐。
 
 ## 五、overflow
 CSS属性 overflow 定义当一个元素的内容太大而无法适应 块级格式化上下文 时候该做什么
@@ -520,3 +535,21 @@ link: [
 
 ### 6. 模板字符串
 	模板字符串使用反引号 (` `) 来代替普通字符串中的用双引号和单引号。模板字符串可以包含特定语法（${expression}）的占位符。占位符中的表达式和周围的文本会一起传递给一个默认函数，该函数负责将所有的部分连接起来，如果一个模板字符串由表达式开头，则该字符串被称为带标签的模板字符串，该表达式通常是一个函数，它会在模板字符串处理后被调用，在输出最终结果前，你都可以通过该函数来对模板字符串进行操作处理。在模版字符串内使用反引号（`）时，需要在它前面加转义符（\）。
+
+### 7. 创建、读取、删除cookie
+	cookie的属性有name、value、域domain、path等，不同的domian或path下可以存在同样名字的cookie；JS 可以使用 document.cookie 属性来创建 、读取、及删除 cookie。
+	1.创建cookie:
+           document.cookie="username=John Doe; expires=Thu, 18 Dec 2043 12:00:00 GMT;path=/";
+	2.获取cookie: 
+	      let cookie = document.cookie // 类型格式为cookie1=value; cookie2=value; cookie3=value;
+	      const cookies = cookie.split(";") // 转换成数组形式  ['cookie1=value', ' cookie2=value', ' cookie3=value']
+	      for (let i = 0; i < cookies.length; i++) {
+             const cookie = unescape(cookies[i]).trim().split('=')// 再次转换，将键和值转换成数组   ['cookie1', ' value']
+          }
+	3.删除cookie: 
+	      // 因为cookie并没有提供删除方法，所以想要删除cookie，设置他的过期时间即可
+	      document.cookie = 'name=;  expires=Thu, 01 Jan 2020 00:00:01 GMT;domain=.dakazhilu.com;path=/'    
+	      其中，name，是需要删除的cookie的name; expires是设置它的过期时间，只需要设置比现在时间早即可；domain和path的值，在浏览器中查看，更改代码即可
+	4.cookie字符串：
+	       如果设置了新的cookie，旧的cookie不会被覆盖，新的cookie将被添加到document.cookie中
+

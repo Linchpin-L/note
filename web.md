@@ -79,108 +79,108 @@ Failed to execute 'btoa' on 'Window': The string to be encoded contains characte
 ## 三、JS知识
  1. return
  
-	    函数都是有返回值的，如果有return，返回return后面的值，如果没有return,返回undefind；并且，return只能返回一个值，多个用逗号隔开的值，默认返回最后一个。
+        函数都是有返回值的，如果有return，返回return后面的值，如果没有return,返回undefind；并且，return只能返回一个值，多个用逗号隔开的值，默认返回最后一个。
 	   
  2. arguments
 
-		可以用来获取传递了多少个参数，它是函数的一个内置对象，展示形式是一个伪数组（特点：具有length属性；按数据索引存储；不具有数组方法）
+        可以用来获取传递了多少个参数，它是函数的一个内置对象，展示形式是一个伪数组（特点：具有length属性；按数据索引存储；不具有数组方法）
 
  3. Math对象
 
-		   Math.floor() 向下取整
-		   Math.ceil() 向上取整
-		   Math.round() 四舍五入，就近取整，-3.5，取整结果为 -3；3.5,取整结果为4
-		   Math.abs() 绝对值
-		   Math.max() Math.min() 求最大、小值
+           Math.floor() 向下取整
+           Math.ceil() 向上取整
+           Math.round() 四舍五入，就近取整，-3.5，取整结果为 -3；3.5,取整结果为4
+           Math.abs() 绝对值
+           Math.max() Math.min() 求最大、小值
 		  
  4. 判断对象类型
 
-		   instanceof ： obj instanceof Array // 返回值为true/false
-		   Array. isArray(): Array.isArray(obj)   //判断是否为数组 ,返回值为true/false
+           instanceof ： obj instanceof Array // 返回值为true/false
+           Array. isArray(): Array.isArray(obj)   //判断是否为数组 ,返回值为true/false
 		   
- 5.  数组
+ 5. 数组
 	 
-		  添加删除：
+          添加删除：
 	 
-			  obj.push(): 末尾添加一个或多个元素； 返回新的长度
-			  obj.unshift(): 开头添加一个或多个元素；返回新的长度
-			  pop(): 删除数组最后一个元素；返回删除的元素值
-			  shift(): 删除数组第一个元素；返回第一个元素
+              obj.push(): 末尾添加一个或多个元素； 返回新的长度
+              obj.unshift(): 开头添加一个或多个元素；返回新的长度
+              pop(): 删除数组最后一个元素；返回删除的元素值
+              shift(): 删除数组第一个元素；返回第一个元素
 			  
-		  排序：
+          排序：
 	 
-	          sort(): 对数组元素进行排序；返回新数组
-				  例： arr.sort(function(a,b) { 
-	                     return b - a;  //降序的排列
-	                     return a - b; //升序
-			 			}
-			  reverse(): 颠倒数组中的元素顺序；返回新数组
-				  
-		  数组去重：
+              sort(): 对数组元素进行排序；返回新数组
+                  例： arr.sort(function(a,b) { 
+                         return b - a;  //降序的排列
+                         return a - b; //升序
+                         }
+              reverse(): 颠倒数组中的元素顺序；返回新数组
+
+	      数组去重：
 	 
-			   遍历旧数组，元素放入新数组，利用indexOf方法判断，新数组中是否存在该元素，返回值为-1，代表不存在，放入
-			   方法： 新数组.indexOf(数组元素)
+               遍历旧数组，元素放入新数组，利用indexOf方法判断，新数组中是否存在该元素，返回值为-1，代表不存在，放入
+               方法： 新数组.indexOf(数组元素)
 			       
-		  数组转成字符串：
+          数组转成字符串：
 	 
-			   toString(): 逗号分隔每一项，返回一个字符串
-			   join('分隔符'): 用分隔符将每一项分隔
+               toString(): 逗号分隔每一项，返回一个字符串
+               join('分隔符'): 用分隔符将每一项分隔
 			   ****
-		  连接两个数组或多个数组
+          连接两个数组或多个数组
 	 
-			   concat(): 不影响原数组，返回新数组
-			   语法：array1.concat(array2, array3, ..., arrayX)
+               concat(): 不影响原数组，返回新数组
+               语法：array1.concat(array2, array3, ..., arrayX)
 			   
- 6. 字符串
+ 7. 字符串
  
-		   concat(): 拼接字符串;
-		   substr(star,length): length代表取得个数；
-		   slice(start,end): 截取位置；
-		   substring(start，end): 基本和slice相同，但不接受负； 
-		   replace(被替换字符，要替换为的字符串): 只会替换字符串中遇到的第一个字符
-		   **将字符串转换成数组**
-		       split('分隔符‘) // 数组转换成字符串用join
+           concat(): 拼接字符串;
+           substr(star,length): length代表取得个数；
+           slice(start,end): 截取位置；
+           substring(start，end): 基本和slice相同，但不接受负； 
+           replace(被替换字符，要替换为的字符串): 只会替换字符串中遇到的第一个字符
+           **将字符串转换成数组**
+               split('分隔符‘) // 数组转换成字符串用join
 		       
- 7. DOM：文档对象模型
+ 8. DOM：文档对象模型
 
-		 获取页面元素的方法：
-		      通过ID：doucument.getElementByld('id名');
-		      通过标签名：doucument.getElementsByTagName('标签名');返回带有指定标签名的对象集合；
-		      通过类名：document.getElementsByClassName('类名'); （H5新增）
-		      通过指定选择器，返回第一个元素对象：document.querySelector('选择器'); 
-		        例：document.querySelector(’#box');
-		      通过指定选择器，返回所有元素对象：document.querySelectorAll('选择器');
+         获取页面元素的方法：
+              通过ID：doucument.getElementByld('id名');
+              通过标签名：doucument.getElementsByTagName('标签名');返回带有指定标签名的对象集合；
+              通过类名：document.getElementsByClassName('类名'); （H5新增）
+              通过指定选择器，返回第一个元素对象：document.querySelector('选择器'); 
+                例：document.querySelector(’#box');
+              通过指定选择器，返回所有元素对象：document.querySelectorAll('选择器');
 		      
-		自定义属性：
-		    获取自定义的属性：element.getAttribute('属性')
-		    设置内置属性值：element.属性 = ‘值’
-		    主要设置自定义属性： element.setAttribute('属性'，‘值’)；
-		    移除属性：element.removeAttribute('属性')；
+        自定义属性：
+            获取自定义的属性：element.getAttribute('属性')
+            设置内置属性值：element.属性 = ‘值’
+            主要设置自定义属性： element.setAttribute('属性'，‘值’)；
+            移除属性：element.removeAttribute('属性')；
 
- 8. BOM：浏览器对象模型
+ 9. BOM：浏览器对象模型
 		
-		  window对象的常见事件：
-		       window.onload：窗口页面加载事件，它是等页面全部加载完成（包括图片和样式），才会触发；一个页面只能写一个，写多个的话，只执行最后一个；
-		       document.addEventListener('DOMContentLoaded',function(){})：窗口页面加载，仅当DOM加载完成就会触发，一个页面可以使用多次；适用于图片多的页面
+          window对象的常见事件：
+               window.onload：窗口页面加载事件，它是等页面全部加载完成（包括图片和样式），才会触发；一个页面只能写一个，写多个的话，只执行最后一个；
+               document.addEventListener('DOMContentLoaded',function(){})：窗口页面加载，仅当DOM加载完成就会触发，一个页面可以使用多次；适用于图片多的页面
 		       
-		  调整窗口大小事件：
-		       window.onresize = function() {}
-		       window.addEventListener('resize',function(){}); // 只要窗口发生变化，就会触发该事件，通常用来完成响应式布局
+          调整窗口大小事件：
+               window.onresize = function() {}
+               window.addEventListener('resize',function(){}); // 只要窗口发生变化，就会触发该事件，通常用来完成响应式布局
 		       
-		  设置定时器
-		     window.setTimeout(调用函数,[延迟的毫秒数]); // 延迟毫秒数默认为0
-		     window.setInterval(回调函数,[间隔的毫秒数]);
+          设置定时器
+             window.setTimeout(调用函数,[延迟的毫秒数]); // 延迟毫秒数默认为0
+             window.setInterval(回调函数,[间隔的毫秒数]);
 		     
-		  清除定时器 
-		     window.clearTimeout(timeoutID)  //用于停止setTimeout设置的定时器
-		     window.clearInterval ( ) //用于停止setInterval设置的定时器
+          清除定时器 
+             window.clearTimeout(timeoutID)  //用于停止setTimeout设置的定时器
+             window.clearInterval ( ) //用于停止setInterval设置的定时器
           location对象属性
-	          location.href 跳转页面
-	          location.search 返回参数
+              location.href 跳转页面
+              location.search 返回参数
           location对象方法
-         	  location.assign() 重定向页面
-         	  location.replace() 替换当前页面，且不能退回之前的页面
-         	  location.reload() 重新加载页面，相当于强制刷新
+               location.assign() 重定向页面
+               location.replace() 替换当前页面，且不能退回之前的页面
+               location.reload() 重新加载页面，相当于强制刷新
           navigator对象：包含有关浏览器的信息
               userAgent属性：可以返回由客户机发送服务器的user-agent头部的值，进而判断用户是pc端登录还是移动端登录
           history对象：与浏览器中访问过的URL历史记录，进行交互
@@ -209,11 +209,11 @@ Failed to execute 'btoa' on 'Window': The string to be encoded contains characte
 
 3.vue-cli 本地存储
 
-    浏览器通过window.sessionStrorage和window.localStorage属性实现本地存储机制
-    setItem('key','value') 该方法接收一个键和值作为参数，会把键值对添加到存储中，若键名存在，则更新其对应的值
-    getItem('key') 该方法接收一个键名作为参数，返回键值；如果获取不到key,会返回null
-    removeItem('key') 该方法接受一个键名作为参数，并把该键名从存储中删除
-    clear() 该方法会清空存储中的所有数据
+    浏览器通过window.sessionStrorage和window.localStorage属性实现本地存储机制，用来存放字符串类型的对象
+    存储数据：sessionStorage.setItem(key, value) 该方法接收一个键和值作为参数，会把键值对添加到存储中，若键名存在，则更新其对应的值
+    获取数据：sessionStorage.getItem(key) 该方法接收一个键名作为参数，返回键值；如果获取不到key,会返回null
+    删除数据：sessionStorage.removeItem(key) 该方法接受一个键名作为参数，并把该键名从存储中删除
+    清空数据：sessionStorage.clear() 该方法会清空存储中的所有数据
    
     sessionStorage: 存储的内容会随着浏览窗口关闭而消失
     LocalStorage: 存储的内容，需要手动清除才会消失
@@ -536,7 +536,154 @@ link: [
 ### 6. 模板字符串
 	模板字符串使用反引号 (` `) 来代替普通字符串中的用双引号和单引号。模板字符串可以包含特定语法（${expression}）的占位符。占位符中的表达式和周围的文本会一起传递给一个默认函数，该函数负责将所有的部分连接起来，如果一个模板字符串由表达式开头，则该字符串被称为带标签的模板字符串，该表达式通常是一个函数，它会在模板字符串处理后被调用，在输出最终结果前，你都可以通过该函数来对模板字符串进行操作处理。在模版字符串内使用反引号（`）时，需要在它前面加转义符（\）。
 
-### 7. 创建、读取、删除cookie
+### 7. this.$set()
+	当vue的data里边声明或者已经赋值过的对象或者数组（数组里边的值是对象）时，向对象中添加新的属性，如果更新此属性的值，是不会更新视图的。这个时候就需要用到this.$set()这个方法，简单来说 this.$set 的功能就是解决这个问题的。
+	官方解释：向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新。它必须用于向响应式对象上添加新属性，因为 Vue 无法探测普通的新增属性
+	调用方法：this.$set( target, key, value ):
+		对象操作：this.$set("改变的对象"，"改变的对象属性"，"值")
+		数组操作：this.$set("数组"，"下标"，"值")
+	例子：给arr[i] 中的account赋值为1
+		 this.$set( arr[i] , ' account ' , 1 )
+
+### 8. splice函数
+	splice函数后接三个变量时( 起始下标 ,  长度 ,  值 )：this.chapter.splice(order, 0, arrList)  //将下标从order开始的0个元素换成arrList（该方法用于排序）
+	splice函数后接四个变量时：arrList.splice(1,2,3,4)  //在的二个位置删除两位，然后添加3和4
+
+### 9. vue的生命周期
+	Vue的生命周期就是vue实例从创建到销毁的全过程，也就是new Vue() 开始就是vue生命周期的开始。Vue 实例有⼀个完整的⽣命周期，也就是从开始创建、初始化数据、编译模版、挂载Dom -> 渲染、更新 -> 渲染、卸载 等⼀系列过程，称这是Vue的⽣命周期。钩子函数是Vue生命周期中每个阶段对外开放让程序员操作Vue的接口。Vue有8个钩子函数。
+
+#### （1）beforeCreate( 创建前 )
+	这个时候，在实例被完成创建出来，el和data都没有初始化，不能访问data、method，一般在这个阶段不进行操作。
+	beforeCreate() {
+	
+		console.log('----beforeCreate----')
+	
+		console.log(this.msg) //undefined
+	
+		console.log(this.$el) //undefined
+	
+	},
+#### （2）created( 创建后 )
+	这个时候，vue实例中的data、method已被初始化，属性也被绑定，但是此时还是虚拟dom，真是dom还没生成，$el 还不可用。这个时候可以调用data和method的数据及方法，createf钩子函数是最早可以调用data和method的，故一般在此对数据进行初始化。
+	created() {
+	
+		console.log('----created----')
+	
+		console.log(this.msg) //msg
+	
+		console.log(this.$el) //undefined
+	
+	},
+#### （3）beforeMount( 挂载前)
+	此时模板已经编辑完成，但还没有被渲染至页面中（即为虚拟dom加载为真实dom），此时el存在则会显示el。在这里可以在渲染前最后一次更改数据的机会，不会触发其他的钩子函数，一般可以在这里做初始数据的获取。
+	当vue实例中，el为挂在目标，未对el进行定义，则this.el显示undefined，但页面中存在template也能识别挂载目标，因为template可以被看成占位符。如果对其进行定义则显示<div id="app"></div>，故所以，beforeMount读取不了真实的el，在mounted才能读取到真实的el，因为el只有渲染完成后才会存在。这里讲的el是真实的el。在真实的el之前存在前，在beforeMount中的其实是页面中的#app，是挂载的目标。
+	beforeMount() {
+	
+		console.log('----beforeMount----')
+	
+		console.log(this.msg) //msg
+	
+		console.log(this.$el) //undefined
+	
+	},
+#### （4）Mounted( 挂载后)
+	此时模板已经被渲染成真实DOM，用户已经可以看到渲染完成的页面，页面的数据也是通过双向绑定显示data中的数据。 这实例创建期间的最后一个生命周期函数，当执行完 mounted 就表示，实例已经被完全创建好了，此时，如果没有其它操作的话，这个实例，就静静的躺在我们的内存中，一动不动。
+	mounted() {
+	
+		console.log('----mounted----')
+	
+		console.log(this.msg) //msg
+	
+		console.log(this.$el) //<div id="app"><span model="msg"></span></div>
+	
+	},
+##### 创建Vue实例的示例
+	<script>
+	export default {
+	  name: 'App',
+	  data() {
+		return {
+		  msg: 'msg',
+		}
+	  },
+	  beforeCreate() {
+		console.log('----beforeCreate----')
+		console.log(this.msg) //msg
+		console.log(this.$el) //undefined
+	  },
+	  created() {
+		console.log('----created----')
+		console.log(this.msg)
+		console.log(this.$el)
+	  },
+	  beforeMount() {
+		console.log('----beforeMount----')
+		console.log(this.msg)
+		console.log(this.$el)
+	  },
+	  mounted() {
+		console.log('----mounted----')
+		console.log(this.msg)
+		console.log(this.$el)
+	  },
+	}
+	</script>
+#### （5）beforeUpdate
+	更新前状态（view层的数据变化前，不是data中的数据改变前），重新渲染之前触发，然后vue的虚拟dom机制会重新构建虚拟dom与上一次的虚拟dom树利用diff算法进行对比之后重新渲染。只有view上面的数据变化才会触发beforeUpdate和updated，仅属于data中的数据改变是并不能触发。
+#### （6）updated
+	数据已经更改完成，dom也重新render完成。
+##### 更新实例
+	<script>
+	export default {
+	  name: 'App',
+	  data() {
+		return {
+		  msg: 'msg',
+		}
+	  },
+	  methods: {
+		clickBtn() {
+		  this.msg = 'newMsg'
+		},
+	  },
+	  beforeUpdate() {
+		console.log('----beforeUpdate----')
+		console.log(this.$refs.$el)
+		console.log(this.msg) //msg
+	  },
+	  updated() {
+		console.log('----updated----')
+		console.log(this.$refs.$el)
+		console.log(this.msg) //msg
+	  },
+	}
+	</script>
+#### （7）beforeDestroy
+	销毁前执行（$destroy方法被调用的时候就会执行）,一般在这里善后:清除计时器、清除非指令绑定的事件等等…’)
+#### （8）destroyed
+	销毁后 （Dom元素存在，只是不再受vue控制）,卸载watcher，事件监听，子组件。
+
+### 10. What is URL
+    URL统一资源定位符
+    URL的组成：协议+域名或IP+端口号+路径+查询参数+锚点
+    URL例子:
+        http://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#SomewhereInTheDocument
+
+####（1） http 是协议
+    它表明了浏览器必须使用何种协议。它通常都是 HTTP 协议或是 HTTP 协议的安全版，即 HTTPS。
+####（2） www.example.com 是域名
+    它表明正在请求哪个 Web 服务器。或者，可以直接使用IP地址
+####（3）:80 是端口
+    Web 服务器使用 HTTP 协议的标准端口（HTTP 为 80，HTTPS 为 443）来授予其资源的访问权限，则通常会被忽略.
+####（4）/path/to/myfile.html 路径
+    是网络服务器上资源的路径，可表示访问什么网页
+####（5）?key1=value1&key2=value2 参数
+    是提供给网络服务器的额外参数。这些参数是用 & 符号分隔的键/值对列表。
+####（6）#SomewhereInTheDocument 锚点
+    锚点表示资源中的一种“书签”，给浏览器显示位于该“加书签”位置的内容的方向。
+
+
+### 11. 创建、读取、删除cookie
 	cookie的属性有name、value、域domain、path等，不同的domian或path下可以存在同样名字的cookie；JS 可以使用 document.cookie 属性来创建 、读取、及删除 cookie。
 	1.创建cookie:
            document.cookie="username=John Doe; expires=Thu, 18 Dec 2043 12:00:00 GMT;path=/";
